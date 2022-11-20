@@ -1,0 +1,101 @@
+CREATE DATABASE DATN
+GO
+USE DATN
+GO	
+CREATE TABLE UseLogin
+(
+	userName nvarchar(50),
+	userPass nvarchar(50)
+)
+GO	
+ALTER TABLE dbo.UseLogin ALTER COLUMN userName NVARCHAR(50) NOT NULL
+GO 
+ALTER TABLE dbo.UseLogin ADD CONSTRAINT PK_User PRIMARY KEY (userName)
+
+INSERT dbo.UseLogin
+(
+    userName,
+    userPass
+)
+VALUES
+(   N'truongdn', -- userName - nvarchar(50)
+    N'123456'  -- userPass - nvarchar(50)
+)
+GO	
+INSERT dbo.UseLogin
+(
+    userName,
+    userPass
+)
+VALUES
+(   N'hant', -- userName - nvarchar(50)
+    N'123456'  -- userPass - nvarchar(50)
+)
+
+SELECT	* FROM	dbo.UseLogin
+GO	
+
+CREATE TABLE Data
+(
+	ID INT,
+	dayTime DATETIME,
+	typeProduct INT,
+	CONSTRAINT PK_Data
+	PRIMARY KEY (ID, dayTime)
+)
+
+SELECT * FROM dbo.Data
+
+ALTER TABLE dbo.Data ALTER COLUMN ID INT NOT NULL
+ALTER TABLE dbo.Data ALTER COLUMN dayTime DATETIME NOT NULL
+
+INSERT dbo.Data(ID, dayTime, typeProduct)
+VALUES
+(   1,         -- ID - int
+    GETDATE(), -- dayTime - datetime
+    0          -- typeProduct - int
+)
+INSERT dbo.Data(ID, dayTime, typeProduct)
+VALUES
+(   2,         -- ID - int
+    GETDATE(), -- dayTime - datetime
+    1          -- typeProduct - int
+)
+INSERT dbo.Data(ID, dayTime, typeProduct)
+VALUES
+(   3,         -- ID - int
+    GETDATE(), -- dayTime - datetime
+    2          -- typeProduct - int
+)
+
+SELECT * FROM dbo.Data
+
+CREATE TABLE SumData
+(
+	dayTime DATE NOT NULL,
+	typeProduct INT NOT NULL,
+	quantity INT 
+	CONSTRAINT PK_SumData
+	PRIMARY KEY (dayTime, typeProduct)
+)
+
+INSERT dbo.SumData(dayTime, typeProduct, quantity)
+VALUES
+(   GETDATE(), -- dayTime - datetime
+    0,         -- typeProduct - int
+    1          -- quantity - int
+)
+INSERT dbo.SumData(dayTime, typeProduct, quantity)
+VALUES
+(   GETDATE(), -- dayTime - datetime
+    1,         -- typeProduct - int
+    2          -- quantity - int
+)
+INSERT dbo.SumData(dayTime, typeProduct, quantity)
+VALUES
+(   GETDATE(), -- dayTime - datetime
+    2,         -- typeProduct - int
+    4          -- quantity - int
+)
+GO	
+SELECT * FROM dbo.SumData
