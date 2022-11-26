@@ -133,7 +133,7 @@ namespace Mitsu_SCADA_WINFORM_v6
             WriteItems.SetValue(1, 1);
             PLC.SyncWrite(tagNumber, ref tagHandles, ref WriteItems, out OPCError);
             WriteItems.SetValue(0, 1);
-            
+            PLC.SyncWrite(tagNumber, ref tagHandles, ref WriteItems, out OPCError);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -141,6 +141,7 @@ namespace Mitsu_SCADA_WINFORM_v6
             WriteItems.SetValue(1, 2);
             PLC.SyncWrite(tagNumber, ref tagHandles, ref WriteItems, out OPCError);
             WriteItems.SetValue(0, 2);
+            PLC.SyncWrite(tagNumber, ref tagHandles, ref WriteItems, out OPCError);
         }
 
         private void symServo1_Click(object sender, EventArgs e)
